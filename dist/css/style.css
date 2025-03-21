@@ -91,3 +91,121 @@ nav {
         grid-template-columns: 1fr;
     }
 }
+/* 基础变量 */
+:root {
+    --primary-color: #3A5A40;  /* 矿物绿 */
+    --accent-color: #6B8F71;   /* 辅助色 */
+    --text-light: #F4F4F9;
+    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+ 
+/* 页眉设计 */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: var(--primary-color);
+    color: var(--text-light);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+ 
+.logo {
+    font-family: 'Georgia', serif;
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+}
+ 
+.header-nav {
+    display: flex;
+    gap: 2rem;
+}
+ 
+.nav-link {
+    color: inherit;
+    transition: opacity 0.3s;
+}
+.nav-link:hover {
+    opacity: 0.8;
+}
+ 
+/* 页中布局 */
+.content-container {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: 80vh;
+    gap: 2rem;
+    padding: 2rem 5%;
+}
+ 
+.category-sidebar {
+    background: var(--text-light);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+ 
+.category-btn {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    border: none;
+    background: #EEE;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.category-btn.active  {
+    background: var(--accent-color);
+    color: white;
+}
+ 
+/* 商品展示区 */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+ 
+.product-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s;
+}
+.product-card:hover {
+    transform: translateY(-5px);
+}
+ 
+/* 页尾设计 */
+.main-footer {
+    background: var(--primary-color);
+    color: var(--text-light);
+    padding: 3rem 5%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+ 
+.footer-section {
+    line-height: 1.8;
+}
+.footer-section a {
+    color: inherit;
+    display: block;
+}
+ 
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .content-container {
+        grid-template-columns: 1fr;
+    }
+    .category-sidebar {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
