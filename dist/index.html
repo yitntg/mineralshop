@@ -24,3 +24,45 @@
     <script src="/js/main.js"></script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云端电商 - 2025春季特惠</title>
+    <link rel="stylesheet" href="style.css"> 
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script> 
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="brand">TechStore</div>
+        <div class="nav-links">
+            <a href="#products">商品</a>
+            <div id="auth-section">
+                <button onclick="showAuthModal()">登录</button>
+            </div>
+            <div class="cart-icon" onclick="toggleCart()">
+                🛒 <span id="cart-counter">0</span>
+            </div>
+        </div>
+    </nav>
+ 
+    <!-- 商品展示区 -->
+    <section id="products" class="grid-container"></section>
+ 
+    <!-- 认证弹窗 -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3>选择登录方式</h3>
+            <button class="auth-btn google" onclick="loginWith('google')">Google登录</button>
+            <button class="auth-btn github" onclick="loginWith('github')">GitHub登录</button>
+        </div>
+    </div>
+ 
+    <!-- 脚本加载 -->
+    <script src="supabase.js"></script> 
+    <script src="main.js"></script> 
+</body>
+</html>
