@@ -49,17 +49,16 @@ function renderPaginatedProducts(page) {
         card.className  = 'product-card';
         
         // 异步校验图片 
-        const hasImage = await checkImageExists(product.sku); 
-        card.innerHTML  = `
-            <div class="image-box">
-                ${hasImage ? 
-                    `<img src="${supabase.storage.from('image').getPublicUrl(`${product.sku}.jpg`)}">`  : 
-                    '<div class="no-image">暂无图片</div>'}
-            </div>
-            <h3>${product.name}</h3> 
-            <p class="price">¥${product.price.toFixed(2)}</p> 
-            <p class="sku">${product.sku}</p> 
-        `;
+       const results = Papa.parse(csvText,  {
+    header: true,
+    dynamicTyping: true,
+    skipEmptyLines: true,
+    transform: (value) => value.trim(),  // 处理首尾空格 
+    error: (err) => {
+        console.error('CSV 解析错误:', err.message); 
+        document.getElementById('error-toast').textContent  = '数据格式异常';
+    }
+});
         
         fragment.appendChild(card); 
     });
