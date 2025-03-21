@@ -104,3 +104,53 @@ document.addEventListener('DOMContentLoaded',  () => {
         `;
     }, 500);
 });
+let currentPage = 1;
+const loadProducts = async (category = 'all') => {
+    // 模拟API请求 
+    const response = await fetch(`/api/products?category=${category}&page=${currentPage}`);
+    const data = await response.json(); 
+    
+    // 渲染商品卡片 
+    const grid = document.querySelector('.seamless-product-grid'); 
+    data.products.forEach(product  => {
+        const card = document.createElement('div'); 
+        card.className  = 'product-card';
+        card.innerHTML  = `
+            <img src="${product.image}"  alt="${product.name}"> 
+            <div class="product-info">
+                <h3>${product.name}</h3> 
+                <p>¥${product.price.toFixed(2)}</p> 
+            </div>
+        `;
+        grid.appendChild(card); 
+    });
+ 
+    // 更新页码与加载状态 
+    currentPage++;
+    isLoading = false;
+};
+ 
+// 滚动监听 
+window.addEventListener('scroll',  () => {
+    const { scrollTop, clientHeight, scrollHeight } = document.documentElement; 
+    if (scrollTop + clientHeight >= scrollHeight - 500 && !isLoading) {
+        loadProducts();
+    }
+});
+// 分类点击事件 
+document.querySelectorAll('.category-tab').forEach(tab  => {
+    tab.addEventListener('click',  function() {
+        // 重置状态 
+        document.querySelectorAll('.category-tab').forEach(t  => t.classList.remove('active')); 
+        this.classList.add('active'); 
+        
+        // 清空当前商品并加载新分类 
+        document.querySelector('.seamless-product-grid').innerHTML  = '';
+        currentPage = 1;
+        loadProducts(this.dataset.category); 
+ 
+        // 更新分类数量（示例）
+        const countSpan = this.querySelector('.count'); 
+        countSpan.textContent  = `(${Math.floor(Math.random()*500)+100})`;  // 需对接真实数据 
+    });
+});
