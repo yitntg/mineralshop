@@ -25,14 +25,20 @@
  
     <!-- 页中 -->
     <main class="content-container">
-        <!-- 商品分类侧边栏 -->
-        <aside class="category-sidebar">
-            <h2>矿物分类</h2>
-            <button class="category-btn active" data-category="all">全部</button>
-            <button class="category-btn" data-category="crystal">水晶</button>
-            <button class="category-btn" data-category="gemstone">宝石</button>
-            <button class="category-btn" data-category="meteorite">陨石</button>
-        </aside>
+    
+    <!-- 新增横向分类栏 -->
+    <nav class="horizontal-scroll-categories">
+        <div class="scroll-wrapper">
+            <button class="category-btn active" data-category="all">全部矿物</button>
+            <button class="category-btn" data-category="crystal">水晶家族</button>
+            <button class="category-btn" data-category="gemstone">稀有宝石</button>
+            <button class="category-btn" data-category="meteorite">陨石藏品</button>
+            <button class="category-btn" data-category="fossil">古生物化石</button>
+            <button class="category-btn" data-category="geode">晶洞标本</button>
+        </div>
+        <!-- 滚动提示标识 -->
+        <div class="scroll-indicator right"></div>
+    </nav>
  
         <!-- 商品展示区 -->
         <section class="product-grid">
