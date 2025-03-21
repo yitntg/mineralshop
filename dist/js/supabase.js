@@ -34,3 +34,11 @@ export default createClient(
     process.env.SUPABASE_URL,   // Cloudflare环境变量注入 
     process.env.SUPABASE_KEY  
 )
+// 直接读取存储桶CSV（无需数据库表）
+const { data: csvFile } = await supabase.storage  
+    .from('mineralshop')
+    .download('csv/products.csv'); 
+ 
+// 转换CSV为JSON 
+const text = await csvFile.text(); 
+const products = Papa.parse(text,  { header: true }).data;
