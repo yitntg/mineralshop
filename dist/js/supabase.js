@@ -28,3 +28,9 @@ window.logout  = async () => {
     await supabase.auth.signOut(); 
     localStorage.removeItem('cart'); 
 };
+// supabase.js 简化配置 
+import { createClient } from '@supabase/supabase-js'
+export default createClient(
+    process.env.SUPABASE_URL,   // Cloudflare环境变量注入 
+    process.env.SUPABASE_KEY  
+)
