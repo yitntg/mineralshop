@@ -1,2 +1,4 @@
-/data/* 200 
+# 放行所有数据文件请求（如CSV）
+/data/*  /data/:splat  200 
+# 单页应用路由（其他请求指向index.html ）
 /*       /index.html    200 
