@@ -37,6 +37,30 @@ body {
     z-index: 500;
 }
 
+/* 针对IE11的hack */
+@media all and (-ms-high-contrast: none) {
+    body {
+        display: block;
+        position: relative;
+        padding-bottom: 80px;
+    }
+    .main-footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .content-container {
+        padding-bottom: 60px; /* 减少移动端预留空间 */
+    }
+    .main-footer {
+        height: auto; /* 高度自适应 */
+        padding: 1rem 0;
+    }
+}
+
 /* 页眉设计 */
 .main-header {
     display: flex;
