@@ -28,25 +28,7 @@ function addToCart(productId) {
     updateCartCount();
 }
 
-// 初始化
-document.addEventListener('DOMContentLoaded', () => {
-    loadProducts();
-    updateCartCount();
-});
-// 商品加载模块 
-let products = [];
-async function loadProducts() {
-    const { data, error } = await supabase 
-        .from('products')
-        .select('*')
-        .eq('stock', true);
- 
-    if (!error) {
-        products = data;
-        renderProducts();
-    }
-}
- 
+
 // 购物车管理系统 
 const cart = {
     items: JSON.parse(localStorage.getItem('cart'))  || [],
@@ -90,26 +72,7 @@ function filterProducts(category) {
     });
 }
  
-// 初始化加载 
-document.addEventListener('DOMContentLoaded',  () => {
-    // 模拟商品数据加载 
-    setTimeout(() => {
-        document.querySelector('.product-grid').innerHTML  = `
-            <div class="product-card" data-category="crystal">
-                <img src="assets/crystal.jpg"  alt="水晶">
-                <h3>天然白水晶</h3>
-                <p>¥ 680.00</p>
-            </div>
-            <!-- 更多商品卡片... -->
-        `;
-    }, 500);
-});
-let currentPage = 1;
-const loadProducts = async (category = 'all') => {
-    // 模拟API请求 
-    const response = await fetch(`/api/products?category=${category}&page=${currentPage}`);
-    const data = await response.json(); 
-    
+
     // 渲染商品卡片 
     const grid = document.querySelector('.seamless-product-grid'); 
     data.products.forEach(product  => {
