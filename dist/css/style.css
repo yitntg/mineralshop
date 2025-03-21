@@ -179,7 +179,78 @@ nav {
 .product-card:hover {
     transform: translateY(-5px);
 }
+
+/* 横向滚动容器 */
+.horizontal-scroll-categories {
+    position: relative;
+    margin: 0 5% 2rem;
+    overflow: hidden;
+}
  
+.scroll-wrapper {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch; /* 移动端顺滑滚动 */
+    padding-bottom: 1rem; /* 预留滚动条空间 */
+    mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 5%,
+        black 95%,
+        transparent 100%
+    ); /* 边缘渐隐效果 */
+}
+ 
+/* 隐藏默认滚动条 */
+.scroll-wrapper::-webkit-scrollbar {
+    height: 5px;
+    background: #f1f1f1;
+}
+.scroll-wrapper::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+ 
+/* 分类按钮样式改造 */
+.category-btn {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    background: #f0f0f0;
+    border: 2px solid transparent;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+ 
+.category-btn.active  {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--accent-color);
+    transform: scale(1.05);
+}
+ 
+/* 滚动提示标识 */
+.scroll-indicator {
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 30px;
+    background: rgba(0,0,0,0.1);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.scroll-indicator.right  {
+    right: 0;
+    background-image: url("data:image/svg+xml,%3Csvg..."); /* 右箭头图标 */
+}
+.scroll-wrapper:hover ~ .scroll-indicator {
+    opacity: 1;
+}
+
 /* 页尾设计 */
 .main-footer {
     background: var(--primary-color);
