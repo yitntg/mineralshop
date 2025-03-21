@@ -66,3 +66,63 @@
     <script src="main.js"></script> 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mineral - 天然矿物电商</title>
+    <link rel="stylesheet" href="style.css"> 
+    <!-- 引入图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> 
+</head>
+<body>
+    <!-- 页眉 -->
+    <header class="main-header">
+        <h1 class="logo">Mineral</h1>
+        <nav class="header-nav">
+            <a href="#login" class="nav-link"><i class="fas fa-user"></i> 登录</a>
+            <a href="#cart" class="nav-link">
+                <i class="fas fa-shopping-cart"></i> 
+                <span id="cart-counter">0</span>
+            </a>
+        </nav>
+    </header>
+ 
+    <!-- 页中 -->
+    <main class="content-container">
+        <!-- 商品分类侧边栏 -->
+        <aside class="category-sidebar">
+            <h2>矿物分类</h2>
+            <button class="category-btn active" data-category="all">全部</button>
+            <button class="category-btn" data-category="crystal">水晶</button>
+            <button class="category-btn" data-category="gemstone">宝石</button>
+            <button class="category-btn" data-category="meteorite">陨石</button>
+        </aside>
+ 
+        <!-- 商品展示区 -->
+        <section class="product-grid">
+            <!-- 商品卡片由JS动态生成 -->
+        </section>
+    </main>
+ 
+    <!-- 页尾 -->
+    <footer class="main-footer">
+        <div class="footer-section">
+            <h3>关于我们</h3>
+            <p>全球天然矿物直营平台</p>
+        </div>
+        <div class="footer-section">
+            <h3>联系我们</h3>
+            <p>service@mineral.com</p> 
+        </div>
+        <div class="footer-section">
+            <h3>服务条款</h3>
+            <a href="#privacy">隐私政策</a>
+            <a href="#return">退换货政策</a>
+        </div>
+    </footer>
+ 
+    <script src="main.js"></script> 
+</body>
+</html>
