@@ -33,3 +33,36 @@ document.addEventListener('DOMContentLoaded', () => {
     loadProducts();
     updateCartCount();
 });
+// 商品加载模块 
+let products = [];
+async function loadProducts() {
+    const { data, error } = await supabase 
+        .from('products')
+        .select('*')
+        .eq('stock', true);
+ 
+    if (!error) {
+        products = data;
+        renderProducts();
+    }
+}
+ 
+// 购物车管理系统 
+const cart = {
+    items: JSON.parse(localStorage.getItem('cart'))  || [],
+    addItem(productId) {
+        const existing = this.items.find(i  => i.id  === productId);
+        existing ? existing.quantity++  : this.items.push({  id: productId, quantity: 1 });
+        this.save(); 
+    },
+    save() {
+        localStorage.setItem('cart',  JSON.stringify(this.items)); 
+        document.getElementById('cart-counter').textContent  = this.items.length; 
+    }
+};
+ 
+// 初始化加载 
+document.addEventListener('DOMContentLoaded',  () => {
+    loadProducts();
+    supabase.auth.getSession();  // 检查当前会话 
+});
