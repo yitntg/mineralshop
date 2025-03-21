@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>矿物商城 - Mineral Shop</title>
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <h1>Mineral Shop</h1>
+            <div class="nav-links">
+                <a href="/cart" class="cart-link">购物车 (<span id="cart-count">0</span>)</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 商品列表 -->
+    <div class="container product-grid" id="product-list"></div>
+
+    <script src="/js/supabase.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>
