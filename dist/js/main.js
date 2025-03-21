@@ -154,3 +154,41 @@ document.querySelectorAll('.category-tab').forEach(tab  => {
         countSpan.textContent  = `(${Math.floor(Math.random()*500)+100})`;  // 需对接真实数据 
     });
 });
+// main.js 核心代码 
+async function renderAllProducts() {
+    // 从存储桶直接获取CSV 
+    const { data: file, error } = await supabase.storage  
+        .from('mineralshop')
+        .download('csv/products.csv'); 
+ 
+    if (error) {
+        console.error('CSV 加载失败:', error);
+        return;
+    }
+ 
+    // CSV转对象数组 
+    const csvText = await file.text(); 
+    const results = Papa.parse(csvText,  {
+        header: true,
+        dynamicTyping: true 
+    });
+    
+    // 暴力渲染200条 
+    const container = document.getElementById('productContainer'); 
+    container.innerHTML  = results.data.map(product  => `
+        <div class="product-card">
+            <div class="image-box">${getImagePlaceholder(product.sku)}</div> 
+            <h3>${product.name}</h3> 
+            <p class="price">¥${product.price.toFixed(2)}</p> 
+            <p class="sku">${product.sku}</p> 
+        </div>
+    `).join('');
+}
+ 
+// 图片占位逻辑 
+function getImagePlaceholder(sku) {
+    const hasImage = checkImageExists(sku); // 需实现校验逻辑 
+    return hasImage ? 
+        `<img src="${supabase.storage.from('image').getPublicUrl(`${sku}.jpg`)}">`  :
+        '<div class="no-image">暂无图片</div>';
+}
