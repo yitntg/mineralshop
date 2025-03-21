@@ -66,3 +66,41 @@ document.addEventListener('DOMContentLoaded',  () => {
     loadProducts();
     supabase.auth.getSession();  // 检查当前会话 
 });
+// 分类筛选逻辑 
+document.querySelectorAll('.category-btn').forEach(btn  => {
+    btn.addEventListener('click',  function() {
+        // 移除所有激活状态 
+        document.querySelectorAll('.category-btn').forEach(b  => b.classList.remove('active')); 
+        // 设置当前激活状态 
+        this.classList.add('active'); 
+        // 获取分类标识 
+        const category = this.dataset.category; 
+        // 执行筛选（需与商品数据联动）
+        filterProducts(category);
+    });
+});
+ 
+// 示例筛选函数（需对接Supabase数据）
+function filterProducts(category) {
+    const allProducts = document.querySelectorAll('.product-card'); 
+    allProducts.forEach(product  => {
+        const matches = (category === 'all') || 
+                       (product.dataset.category  === category);
+        product.style.display  = matches ? 'block' : 'none';
+    });
+}
+ 
+// 初始化加载 
+document.addEventListener('DOMContentLoaded',  () => {
+    // 模拟商品数据加载 
+    setTimeout(() => {
+        document.querySelector('.product-grid').innerHTML  = `
+            <div class="product-card" data-category="crystal">
+                <img src="assets/crystal.jpg"  alt="水晶">
+                <h3>天然白水晶</h3>
+                <p>¥ 680.00</p>
+            </div>
+            <!-- 更多商品卡片... -->
+        `;
+    }, 500);
+});
